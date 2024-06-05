@@ -1,4 +1,6 @@
 # cn-starbucks-stores-data
+![example workflow](https://github.com/junyilou/cn-starbucks-stores-data/actions/workflows/actions.yml/badge.svg)
+
 中国内地星巴克门店数据
 
 ## Intro
