@@ -21,4 +21,5 @@ jobs:
       - name: execute py script
         run: python main.py
       - name: commit files
+        if: env.SHOULD_COMMIT == 'true'
         uses: stefanzweifel/git-auto-commit-action@v5
