@@ -2,9 +2,9 @@ import json
 import os
 from dataclasses import asdict
 from datetime import datetime
+from json import loads
+from urllib.request import build_opener
 from zoneinfo import ZoneInfo
-
-import requests
 
 from models import DataDict, Store, parse
 
@@ -21,8 +21,10 @@ def main() -> None:
 	saved = [Store(**d) for d in j["data"]]
 
 	print(f"[下载文件] {BEIJING_TIME:%F %T}")
-	r = requests.get(API_URL, headers = {"User-Agent": USER_AGENT})
-	j: DataDict = r.json()
+	opener = build_opener()
+	opener.addheaders = [("User-Agent", USER_AGENT)]
+	with opener.open(API_URL) as response:
+		j: DataDict = loads(response.read())
 	print(f"[解析文件] {j["meta"]["total"]} 家门店")
 
 	assert j["data"], "门店信息为空"
