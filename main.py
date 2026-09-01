@@ -23,7 +23,7 @@ def main() -> None:
 	print(f"[下载文件] {BEIJING_TIME:%F %T}")
 	opener = build_opener()
 	opener.addheaders = [("User-Agent", USER_AGENT)]
-	with opener.open(API_URL) as response:
+	with opener.open(API_URL, timeout=10) as response:
 		j: DataDict = loads(response.read())
 	print(f"[解析文件] {j["meta"]["total"]} 家门店")
 
