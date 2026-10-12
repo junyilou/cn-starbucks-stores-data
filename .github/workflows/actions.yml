@@ -2,7 +2,7 @@ name: main
 
 on:
   schedule:
-    - cron: '0 4 1 * *'
+    - cron: '0 4 1,15 * *'
   workflow_dispatch:
 
 jobs:
@@ -12,13 +12,13 @@ jobs:
       contents: write
     steps:
       - name: checkout repo content
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: setup python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
-          python-version: '3.13'
+          python-version: '3.15'
       - name: execute py script
         run: python main.py
       - name: commit files
         if: env.SHOULD_COMMIT == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
